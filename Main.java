@@ -1,11 +1,11 @@
-import course. Course;
-import student. *; 
-import teacher. *;
-public class Main
-{
-public static void main(String[] args) {
-Course cs = new Course () ;
-Student st = new Student();
-Teacher te = new Teacher ();
+import tv.*;
+import tvfactory.*;
+import xml.ReadXMLUtilTV;
+public class Main{
+public static void main(String args[]){
+Tv tv;
+String brandName =ReadXMLUtilTV.getBrandName();
+tv =TVFactory.produceTv(brandName);
+tv.play();
 }
 }
