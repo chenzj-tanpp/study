@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <config>
-  <className>factory.BMWFactory</className>
+  <className>factory.BenzFactory</className>
   </config>
