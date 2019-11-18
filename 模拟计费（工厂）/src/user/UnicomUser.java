@@ -27,7 +27,7 @@ public class UnicomUser implements User {
 		}
 
 	}
-
+//随机得到电话号
 	public  String getCallToPhoneNumber() {
 		return "1551881" + String.valueOf(new Random().nextInt(10)) + String.valueOf(new Random().nextInt(10))
 				+ String.valueOf(new Random().nextInt(10)) + String.valueOf(new Random().nextInt(10));
@@ -36,8 +36,11 @@ public class UnicomUser implements User {
 	// 模拟计费办法，以字符串的形式返回保留2位小数的计费结果
 	public  String accountFee(long timeStart, long timeEnd) {
 		double feePerMinute = 0.09;
+		
 		int minutes = Math.round((timeEnd - timeStart) / 60000);
+		double seconds= Math.round((timeEnd-timeStart)/1000-minutes*60);
 		double feeTotal = feePerMinute * minutes;
+		System.out.println("通话时长： "+minutes+"分"+seconds+"秒");
 		return String.format("%.2f", feeTotal);
 
 	}
@@ -47,16 +50,16 @@ public class UnicomUser implements User {
 		System.out.println("---------联通查询-------");
 		String allRecords = this.communicationRecords.toString();
 		String[] recordArray = allRecords.split(";");
-		DateFormat date = DateFormat.getDateInstance(DateFormat.DEFAULT);
+		//DateFormat date = DateFormat.getDateInstance(DateFormat.FULL);
 		for (int i = 0; i < recordArray.length; i++) {
 			String[] recordField = recordArray[i].split(",");
 			// System.out.println(recordField.length);
 			System.out.println("----------通话记录分割线----------");
 			System.out.println("主叫：" + recordField[0]);
 			System.out.println("被叫：" + recordField[3]);
-			System.out.println("通话开始时间：" + date.format(Long.parseLong(recordField[1])));
+			System.out.println("通话开始时间：" + new Date(Long.parseLong(recordField[1])));
 			// System.out.println(recordField[1]);
-			System.out.println("通话结束时间：" + date.format(Long.parseLong(recordField[2])));
+			System.out.println("通话结束时间：" + new Date(Long.parseLong(recordField[2])));
 			System.out
 					.println("计费：" + accountFee(Long.parseLong(recordField[1]), Long.parseLong(recordField[2])) + "元");
 		}
