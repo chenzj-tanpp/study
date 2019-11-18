@@ -37,6 +37,7 @@ public class TelcomUser implements User {
 	public  String accountFee(long timeStart, long timeEnd) {
 		double feePerMinute = 0.2;
 		int minutes = Math.round((timeEnd - timeStart) / 60000);
+		System.out.println("通话时间： "+minutes+"分钟");
 		double feeTotal = feePerMinute * minutes;
 		return String.format("%.3f", feeTotal);
 
