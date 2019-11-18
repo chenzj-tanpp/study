@@ -15,6 +15,7 @@ public class Main {
 		user=accountSystem.produce(phonenumber);
 		user.generateCommunicateRecord();
 		user.printDetails();
+		sc.close();//只在关闭前关闭输入
 		System.exit(0);
 	}
       
