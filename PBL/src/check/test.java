@@ -12,6 +12,7 @@ public class test {
 
 		customer.addRental(new Rental(new Movie("aaa",Movie.REGULAR),1)); 
 		customer.addRental(new Rental(new Movie("bbb",Movie.NEW_RELEASE),1)); 
+		customer.addRental(new Rental(new Movie("ddd",Movie.CHILDRENS),2));
 		customer.addRental(new Rental(new Movie("ccc",Movie.CHILDRENS),1)); 
 		System.out.println(customer.statement());
 	}
