@@ -3,7 +3,7 @@ package yuan;
 import java.util.Enumeration;
 import java.util.Vector;
 
-//Customer (顾客)
+//Customer 
 //Customer类用来表示顾客。就像其他类一样,它也拥有数据和相应的访问函数:
 public class Customer {
 	private String _name;
