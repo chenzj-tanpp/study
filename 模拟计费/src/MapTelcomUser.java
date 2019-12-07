@@ -5,7 +5,7 @@ public class MapTelcomUser {
 
 	private String phoneNumber;
 	private String callTo;
-	private LinkedHashMap singleRecord;
+	private HashMap singleRecord;
 	private ArrayList communicationRecords;
 
 	public MapTelcomUser(String phoneNumber) {
@@ -18,7 +18,7 @@ public class MapTelcomUser {
 	void generateCommunicateRecord() {
 		int recordNum = new Random().nextInt(10);
 		for (int i = 0; i <= recordNum; i++) {
-			this.singleRecord = new LinkedHashMap();
+			this.singleRecord = new HashMap();
 			// 开始时间，当前时间之前的某个随机时间
 			long timeStart = System.currentTimeMillis() - new Random().nextInt(36000000);
 			// 结束时间开始后的十分钟内随机的一-个时间，至少一分钟
@@ -56,20 +56,14 @@ public class MapTelcomUser {
 		Iterator it = this.communicationRecords.iterator();
 		while (it.hasNext()) {
 			System.out.println("----------通话记录分割线----------");
-			this.singleRecord=((LinkedHashMap)it.next());
-			
-			/*Iterator ite=this.singleRecord.entrySet().iterator();
-			while (ite.hasNext()) {
-			Map.Entry entry=(Map.Entry) it.next();
-				System.out.println(entry.getKey()+":"+entry.getValue());
-			}*/
-			Set keySet=this.singleRecord.keySet();
-			Iterator ite=keySet.iterator();
-			while (ite.hasNext()) {
-				Object key= ite.next();
-				Object value=this.singleRecord.get(key);
-				System.out.println(key+":"+value);
+			this.singleRecord=((HashMap)it.next());
+			Set entrySet = this.singleRecord.entrySet();
+			Iterator itEntry = entrySet.iterator();
+			while (itEntry.hasNext()) {
+				Map.Entry entry =(Map.Entry)itEntry.next();
+				System.out.println(entry.getKey() + ":" + entry.getValue());
 			}
+
 
 
 	}
