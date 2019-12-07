@@ -6,5 +6,7 @@ public class TelcomAccountSystem {
 		telcomUser.generateCommunicateRecord();
 		// 打印通话详单
 		telcomUser.printDetails();
+		//打印被叫号码与计费
+		telcomUser.printCallToDetails();
 	}
 }
