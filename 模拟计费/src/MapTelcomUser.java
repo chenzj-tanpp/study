@@ -18,7 +18,7 @@ public class MapTelcomUser {
 	void generateCommunicateRecord() {
 		int recordNum = new Random().nextInt(10);
 		for (int i = 0; i <= recordNum; i++) {
-			this.singleRecord = new HashMap();
+			this.singleRecord = new LinkedHashMap();
 			// 开始时间，当前时间之前的某个随机时间
 			long timeStart = System.currentTimeMillis() - new Random().nextInt(36000000);
 			// 结束时间开始后的十分钟内随机的一-个时间，至少一分钟
@@ -54,12 +54,15 @@ public class MapTelcomUser {
 	void printDetails() {
 
 		Iterator it = this.communicationRecords.iterator();
-		DateFormat date = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
-		SimpleDateFormat da = new SimpleDateFormat("E yyyy - MM - dd  HH:mm:ss ");
-
 		while (it.hasNext()) {
 			System.out.println("----------通话记录分割线----------");
-			this.singleRecord=((HashMap)it.next());
+			this.singleRecord=((LinkedHashMap)it.next());
+			
+			/*Iterator ite=this.singleRecord.entrySet().iterator();
+			while (ite.hasNext()) {
+			Map.Entry entry=(Map.Entry) it.next();
+				System.out.println(entry.getKey()+":"+entry.getValue());
+			}*/
 			Set keySet=this.singleRecord.keySet();
 			Iterator ite=keySet.iterator();
 			while (ite.hasNext()) {
@@ -67,6 +70,7 @@ public class MapTelcomUser {
 				Object value=this.singleRecord.get(key);
 				System.out.println(key+":"+value);
 			}
+
 
 	}
 
