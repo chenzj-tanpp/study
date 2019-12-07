@@ -5,7 +5,7 @@ public class MapTelcomUser {
 
 	private String phoneNumber;
 	private String callTo;
-	private HashMap singleRecord;
+	private LinkedHashMap singleRecord;
 	private ArrayList communicationRecords;
 
 	public MapTelcomUser(String phoneNumber) {
@@ -14,22 +14,22 @@ public class MapTelcomUser {
 
 	}
 
-// Ä£ÄâÍ¨»°¼ÇÂ¼µÄÉú³É
+// æ¨¡æ‹Ÿé€šè¯è®°å½•çš„ç”Ÿæˆ
 	void generateCommunicateRecord() {
 		int recordNum = new Random().nextInt(10);
 		for (int i = 0; i <= recordNum; i++) {
 			this.singleRecord = new LinkedHashMap();
-			// ¿ªÊ¼Ê±¼ä£¬µ±Ç°Ê±¼äÖ®Ç°µÄÄ³¸öËæ»úÊ±¼ä
+			// å¼€å§‹æ—¶é—´ï¼Œå½“å‰æ—¶é—´ä¹‹å‰çš„æŸä¸ªéšæœºæ—¶é—´
 			long timeStart = System.currentTimeMillis() - new Random().nextInt(36000000);
-			// ½áÊøÊ±¼ä¿ªÊ¼ºóµÄÊ®·ÖÖÓÄÚËæ»úµÄÒ»-¸öÊ±¼ä£¬ÖÁÉÙÒ»·ÖÖÓ
+			// ç»“æŸæ—¶é—´å¼€å§‹åçš„ååˆ†é’Ÿå†…éšæœºçš„ä¸€-ä¸ªæ—¶é—´ï¼Œè‡³å°‘ä¸€åˆ†é’Ÿ
 			long timeEnd = timeStart + 60000 + new Random().nextInt(600000);
-			this.callTo = getCallToPhoneNumber();// ±»½ĞºÅÂë
-			// ²åÈëÍ¨»°¼ÇÂ¼
-			this.singleRecord.put("Ö÷½Ğ", this.phoneNumber);
-			this.singleRecord.put("¿ªÊ¼Ê±¼ä", new Date(timeStart));
-			this.singleRecord.put("½áÊøÊ±¼ä", new Date(timeEnd));
-			this.singleRecord.put("±»½ĞºÅÂë", this.callTo);
-			this.singleRecord.put("¼Æ·Ñ", this.accountFee(timeStart, timeEnd));
+			this.callTo = getCallToPhoneNumber();// è¢«å«å·ç 
+			// æ’å…¥é€šè¯è®°å½•
+			this.singleRecord.put("ä¸»å«", this.phoneNumber);
+			this.singleRecord.put("å¼€å§‹æ—¶é—´", new Date(timeStart));
+			this.singleRecord.put("ç»“æŸæ—¶é—´", new Date(timeEnd));
+			this.singleRecord.put("è¢«å«å·ç ", this.callTo);
+			this.singleRecord.put("è®¡è´¹", this.accountFee(timeStart, timeEnd));
 			this.communicationRecords.add(singleRecord);
 
 		}
@@ -41,7 +41,7 @@ public class MapTelcomUser {
 				+ String.valueOf(new Random().nextInt(10)) + String.valueOf(new Random().nextInt(10));
 	}
 
-	// Ä£Äâ¼Æ·Ñ°ì·¨£¬ÒÔ×Ö·û´®µÄĞÎÊ½·µ»Ø±£Áô3Î»Ğ¡ÊıµÄ¼Æ·Ñ½á¹û
+	// æ¨¡æ‹Ÿè®¡è´¹åŠæ³•ï¼Œä»¥å­—ç¬¦ä¸²çš„å½¢å¼è¿”å›ä¿ç•™3ä½å°æ•°çš„è®¡è´¹ç»“æœ
 	private String accountFee(long timeStart, long timeEnd) {
 		double feePerMinute = 0.2;
 		int minutes = Math.round((timeEnd - timeStart) / 60000);
@@ -50,12 +50,12 @@ public class MapTelcomUser {
 
 	}
 
-//´òÓ¡Í¨»°¼ÇÂ¼
+//æ‰“å°é€šè¯è®°å½•
 	void printDetails() {
 
 		Iterator it = this.communicationRecords.iterator();
 		while (it.hasNext()) {
-			System.out.println("----------Í¨»°¼ÇÂ¼·Ö¸îÏß----------");
+			System.out.println("----------é€šè¯è®°å½•åˆ†å‰²çº¿----------");
 			this.singleRecord=((LinkedHashMap)it.next());
 			
 			/*Iterator ite=this.singleRecord.entrySet().iterator();
