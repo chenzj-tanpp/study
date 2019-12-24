@@ -1,5 +1,10 @@
 package bank;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import user.*;
 import dbutils.*;
@@ -8,14 +13,15 @@ public class Bank {
 	int account;
 	private static User user;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+
 		Bank bank = new Bank();
 		bank.login();
 		bank.operate();
 	}
 
 	// 金额存入、取出、查询
-	public void operate() {
+	public void operate() throws Exception {
 		Bank bank = new Bank();
 		int n;
 		Scanner sc = new Scanner(System.in);
@@ -23,41 +29,42 @@ public class Bank {
 			System.out.println("请选择你要进行的操作：");
 			System.out.println("1: 存入\t 2:取出\t 3:查询\t0:退出");
 			n = sc.nextInt();
-			if(n==1||n==2){
-				
-				int num=0;
-				try{
+			if (n == 1 || n == 2) {
+
+				int num = 0;
+				try {
 					System.out.println("请输入您的存取款数：");
-					num=sc.nextInt();
-				}catch(Exception e){
-					System.out.println("输入金额错误");				
+					num = sc.nextInt();
+				} catch (Exception e) {
+					System.out.println("输入金额错误");
 					continue;
 				}
-				
-				
+
 				switch (n) {
 				case 1:
 					bank.income(num);
 					break;
-				case 2:			
+				case 2:
 					bank.takeout(num);
 					break;
 				default:
 					break;
-			}
-			}	
-			else if( n==3){		
-				show();
 				}
-			else if( n== 0){
-				System.exit(0);
-			}
-			else {
+			} else if (n == 3) {
+				show();
+			} else if (n == 0) {
+				DBUtils dt = DBUtils.getInstance();
+				dt.flash();
+				// System.exit(0);
+				break;
+			} else {
 				System.out.println("请输入0~3之间的数字选择操作");
 			}
+
+		}
 	}
-}
-	public void login() {
+
+	public void login() throws Exception {
 		DBUtils dt = DBUtils.getInstance();
 		Scanner sc = new Scanner(System.in);
 		while (true) {

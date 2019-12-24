@@ -1,6 +1,6 @@
 package user;
-
-public class User {
+import java.io.Serializable;
+public class User implements Serializable{
     private String cardID;//银行卡号
     private String cardPwd;//密码
     private String userName;//账户名
